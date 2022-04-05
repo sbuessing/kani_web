@@ -1,0 +1,11 @@
+<div class="sentence-list">
+  <mat-card *ngFor="let sentence of sentences; let i = index">
+    <app-sentence-view
+      [sentence]="sentence"
+      [jlptKnown]="4"
+      [jlptStudy]="3"
+      [active]="i === 0"
+    >
+    </app-sentence-view>
+  </mat-card>
+</div>

@@ -1,0 +1,33 @@
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <mat-toolbar
+      color="primary"
+      style="display: flex; justify-content: space-between"
+    >
+      <div>
+        <a routerLink="/">
+          <img class="crabby" src="assets/images/crabwhite/kani-crab.png" />
+          <span class="product-name">Kani Reader</span>
+        </a>
+      </div>
+      <div>
+        <button
+          *ngIf="user"
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          class="options"
+        >
+          <mat-icon class="icon">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/about">About Kani Reader</button>
+          <button mat-menu-item routerLink="/profile">Profile</button>
+          <button mat-menu-item (click)="logout()">Sign out</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

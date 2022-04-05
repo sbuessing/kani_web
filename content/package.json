@@ -1,0 +1,38 @@
+{
+  "name": "pipeline",
+  "scripts": {
+    "analysis": "export GOOGLE_APPLICATION_CREDENTIALS='firebase-private-key.json' ; ts-node src/analysis.ts",
+    "books": "export GOOGLE_APPLICATION_CREDENTIALS='firebase-private-key.json' ; ts-node src/books.ts",
+    "sentences": "export GOOGLE_APPLICATION_CREDENTIALS='firebase-private-key.json' ; ts-node src/sentences.ts",
+    "uploadSentences": "export GOOGLE_APPLICATION_CREDENTIALS='firebase-private-key.json' ; ts-node src/upload_sentences.ts",
+    "scraper": "export GOOGLE_APPLICATION_CREDENTIALS='firebase-private-key.json' ; export FIREBASE_STORAGE_EMULATOR_HOST='localhost:9199' ; ts-node src/article_scraper.ts",
+    "scraperwindows": "set GOOGLE_APPLICATION_CREDENTIALS=firebase-private-key.json&& set FIREBASE_STORAGE_EMULATOR_HOST=localhost:9199&& ts-node src/article_scraper.ts",
+    "nhk": "export GOOGLE_APPLICATION_CREDENTIALS='firebase-private-key.json' ; export FIREBASE_STORAGE_EMULATOR_HOST='localhost:9199' ; ts-node src/article_scraper.ts nhk",
+    "gakken": "export GOOGLE_APPLICATION_CREDENTIALS='firebase-private-key.json' ; export FIREBASE_STORAGE_EMULATOR_HOST='localhost:9199' ; ts-node src/article_scraper.ts gakken",
+    "nhkwindows": "set GOOGLE_APPLICATION_CREDENTIALS=firebase-private-key.json&& set FIREBASE_STORAGE_EMULATOR_HOST=localhost:9199&& ts-node src/article_scraper.ts nhk",
+    "maisho": "export GOOGLE_APPLICATION_CREDENTIALS='firebase-private-key.json' ; export FIREBASE_STORAGE_EMULATOR_HOST='localhost:9199'; ts-node src/article_scraper.ts maisho",
+    "mainichi": "export GOOGLE_APPLICATION_CREDENTIALS='firebase-private-key.json' ; export FIREBASE_STORAGE_EMULATOR_HOST='localhost:9199'; ts-node src/article_scraper.ts mainichi",
+    "botchan": "export GOOGLE_APPLICATION_CREDENTIALS=firebase-private-key.json&& export FIREBASE_STORAGE_EMULATOR_HOST=localhost:9199&& ts-node src/article_scraper.ts botchan",
+    "nhkhard": "export GOOGLE_APPLICATION_CREDENTIALS=firebase-private-key.json&& export FIREBASE_STORAGE_EMULATOR_HOST=localhost:9199&& ts-node src/article_scraper.ts nhkhard",
+    "test": "export GOOGLE_APPLICATION_CREDENTIALS=firebase-private-key.json ; ts-node src/test.ts",
+    "wanikani": "ts-node src/wanikani.ts ; cp assets/wanikani/*.json ../site/functions/assets/wanikani",
+    "wikipedia": "ts-node src/wikipedia.ts",
+    "cleanSentences": "rm assets/words/*.json"
+  },
+  "dependencies": {
+    "@google-cloud/translate": "^6.3.1",
+    "@types/cheerio": "^0.22.30",
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
+    "firebase-admin": "^10.0.1",
+    "kuromoji": "^0.1.2",
+    "kuromojin": "^3.0.0",
+    "wanakana": "^4.0.2",
+    "wikijs": "^6.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.6",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  }
+}

@@ -1,0 +1,37 @@
+@use '@angular/material' as mat;
+
+.back {
+  font-size: 16px;
+  line-height: 32px;
+  float: left;
+  margin-left: 20px;
+  color: mat.get-color-from-palette(mat.define-palette(mat.$indigo-palette));
+  mat-icon {
+    font-size: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+  }
+}
+
+h2 {
+  margin: 40px;
+  text-align: center;
+}
+
+mat-button-toggle-group {
+  margin-bottom: 20px;
+
+  mat-button-toggle {
+    font-size: 11px;
+    color: black;
+  }
+}
+
+button {
+  margin-bottom: 20px;
+}
+
+.word {
+  margin-right: 8px;
+  padding: 0 4px;
+}

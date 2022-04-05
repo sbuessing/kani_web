@@ -1,0 +1,53 @@
+<div class="container">
+
+<a mat-button class="back" href="javascript:history.back()">
+  <mat-icon class="icon" [inline]="true">keyboard_arrow_left</mat-icon>
+  <div style="display: inline-block">Back</div>
+</a>
+<a mat-button *ngIf="showFilters" [matMenuTriggerFor]="menu" class="filters">
+  Filter
+  <mat-icon class="icon" [inline]="true">tune</mat-icon>
+</a>
+<mat-menu #menu="matMenu">
+  <mat-form-field class="filters" appearance="fill">
+    <mat-label>Max sentences per word</mat-label>
+    <mat-select (selectionChange)="refreshData()" [(value)]="spw">
+      <mat-option value="1">1 sentence</mat-option>
+      <mat-option value="2">2 sentences</mat-option>
+      <mat-option value="5">5 sentences</mat-option>
+      <mat-option value="10">10 sentences</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-menu>
+
+<h1>{{ title }}</h1>
+<div class="news-heading">
+  <app-news-heading *ngIf="article" [article]="article"></app-news-heading>
+</div>
+<!-- TODO: Move colors to a global setting.-->
+<div class="instructions">
+  <span style="color: #71d1ff">Learning</span>
+  <span style="color: #c999e8">WK word</span>
+  <span style="color: #85cc52">WK Kanji</span>
+  <span style="color: #f3008e">Unknown</span>
+</div>
+<div *ngIf="sentences.length === 0 && loading === true">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="sentence-list">
+  <mat-card *ngFor="let sentence of sentences; let i = index">
+    <app-sentence-view (click)="select(sentence)" [sentence]="sentence" [jlptKnown]="userSettings?.jlptKnown"
+      [jlptStudy]="userSettings?.jlptStudy" [active]="i === 0">
+    </app-sentence-view>
+  </mat-card>
+</div>
+
+<div class="desktop-hint">
+  You can use keyboard shortcuts a,d,w,s,e to navigate.
+</div>
+
+<div class="words-no-content" *ngIf="wordsWithNoContent.length > 0">
+  Words with no content: {{ wordsFormatted(wordsWithNoContent) }}
+</div>
+</div>

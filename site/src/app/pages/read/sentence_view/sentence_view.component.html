@@ -1,0 +1,50 @@
+<div #sentenceDiv class="sentence-container">
+  <div class="indicator" *ngIf="active"></div>
+  <div>
+    <div class="sentence">
+      <ng-container *ngFor="let word of sentence.words">
+          <ng-template #popContent>
+            <app-word-view [word]="word"></app-word-view>
+          </ng-template>  
+
+          <word [style]="'color:' + textColor(word)" 
+            *ngIf="containsKanji(word.orig)" 
+            [attr.f]="furigana(word)" [attr.d]="briefDef(word)"
+            [ngbPopover]="popContent"
+            placement="bottom-left top-left top-right bottom-right"
+            >{{word.orig}}</word>
+
+          <span *ngIf="!containsKanji(word.orig)">{{ word.orig }}</span>
+      </ng-container>
+      <div class="controls">
+        <button mat-icon-button [color]="active ? 'primary' : 'inactive'" (click)="showEnglish = !showEnglish">
+          <mat-icon class="icon" [inline]="true">g_translate</mat-icon>
+        </button>
+        <button mat-icon-button [color]="active ? 'primary' : 'inactive'" (click)="showMeaning = !showMeaning">
+          <mat-icon class="icon" [inline]="true">list</mat-icon>
+        </button>
+        <button mat-icon-button [color]="active ? 'primary' : 'inactive'" (click)="speak()" *ngIf="!playing">
+          <mat-icon class="icon" [inline]="true">play_circle</mat-icon>
+        </button>
+        <button mat-icon-button [color]="active ? 'primary' : 'inactive'" (click)="stop()" *ngIf="playing">
+          <mat-icon class="icon" [inline]="true">pause_circle_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="showEnglish" class="english">{{ sentence.english }}</div>
+    <div *ngIf="showMeaning">
+      <ul class="meaning">
+        <ng-container *ngFor="let word of sentence.words">
+          <ng-template #popContent>
+            <app-word-view [word]="word"></app-word-view>
+          </ng-template>
+          <li *ngIf="definition(word)" [ngClass]="{ hasWord: word.wk }">
+            <span class="definition-word" [style]="'color:' + textColor(word)" [ngbPopover]="popContent"
+              placement="bottom-left top-left" container="body">{{ word.dict }}</span>
+            {{ word.read }}&nbsp;&nbsp; {{ definition(word) }}&nbsp;&nbsp;
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1 @@
+This will contain the JSON files for each Wanikani word.

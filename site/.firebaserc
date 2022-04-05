@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "kanireader"
+  },
+  "targets": {
+    "kanireader": {
+      "hosting": {
+        "site": [
+          "kanireader"
+        ]
+      }
+    }
+  }
+}

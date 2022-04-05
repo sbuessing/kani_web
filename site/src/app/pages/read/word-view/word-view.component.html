@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="word-box">
+    <div class="word">{{ word.dict }}</div>
+    <div class="text">
+      <div class="furigana">{{ word.read }}</div>
+      <div>{{ word.wkDef ? word.wkDef : word.def }}</div>
+    </div>
+  </div>
+  <div class="kanji-list">
+    <ng-container *ngFor="let character of word.kanji">
+      <div class="kanji-box wk-kanji" *ngIf="character.wkid">
+        <a
+          class="kanji"
+          href="http://wanikani.com/kanji/{{ character.kanji }}"
+          target="_blank"
+          >{{ character.kanji }}</a
+        >
+        <div style="white-space: nowrap">{{ character.wkPron }}</div>
+        <div>{{ character.wkDef }}</div>
+      </div>
+      <div class="kanji-box other" *ngIf="!character.wkid">
+        <a
+          class="kanji"
+          href="http://jisho.org/search/{{ character.kanji }}"
+          target="_blank"
+          >{{ character.kanji }}</a
+        >
+        <div style="white-space: nowrap" [title]="character.jmOn">
+          {{ character.jmOn?.split('、')[0] }}
+        </div>
+        <div [title]="character.jmDef">
+          {{ character.jmDef?.split(',')[0] }}
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <hr />
+  <div class="notes">
+    <span *ngIf="word.wk">
+      <a href="http://wanikani.com/vocabulary/{{ word.wk }}" target="_blank"
+        >WK {{ word.wkLevel }}</a
+      >
+    </span>
+    <span *ngIf="word.userStatus">{{ stageLabels.get(word.userStatus) }}</span>
+    <span>
+      <a href="http://jisho.org/search/{{ word.orig }}" target="_blank">Ji</a>
+    </span>
+    <span *ngIf="word.jlpt">N{{ word.jlpt }}</span>
+  </div>
+</div>

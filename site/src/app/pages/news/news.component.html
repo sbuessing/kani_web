@@ -1,0 +1,25 @@
+<a mat-button class="back" href="javascript:history.back()">
+  <mat-icon class="icon" [inline]="true">keyboard_arrow_left</mat-icon>
+  <div style="display: inline-block">Back</div>
+</a>
+<h2>Articles</h2>
+
+<div class="news-list">
+  <mat-card mat-button *ngFor="let article of (news | async).articles">
+    <div>
+      <a
+        class="news-title"
+        href="/read?source={{ newsSourceParam }}&article={{
+          article.article_id
+        }}"
+        >{{ article.title }}</a
+      >
+      <div>
+        {{ article.date | date: 'MM月d日 h時mm分' }}
+        {{ article?.stats?.wordCount }} words
+        <app-word-chart [stats]="article?.stats"></app-word-chart>
+      </div>
+    </div>
+    <img class="news-image" width="80px" src="{{ article.image }}" />
+  </mat-card>
+</div>

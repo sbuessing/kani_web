@@ -1,0 +1,28 @@
+<div class="container">
+  <img class="crabby" src="assets/images/kani-crab.png" />
+
+  <h1>Welcome to Kani Reader!</h1>
+
+  <p>
+    Read level-appropriate content with furigana and hints based on your JLPT
+    level and
+    <a href="http://www.wanikani.com">Wanikani</a> progress. Tap any word for
+    the Wanikani kanji and word definitions.
+  </p>
+  <button mat-raised-button class="login" color="primary" (click)="login()">
+    Sign in with Google
+  </button>
+
+  <button mat-raised-button class="login" color="secondary" (click)="loginAnonymously()">
+    Maybe Later
+  </button>
+
+  <h2>Try it out</h2>
+  <div class="sentence-list">
+    <mat-card *ngFor="let sentence of sentences; let i = index">
+      <app-sentence-view (click)="select(sentence)" [sentence]="sentence" [jlptKnown]="5" [jlptStudy]="4"
+        [active]="i === 0">
+      </app-sentence-view>
+    </mat-card>
+  </div>
+</div>

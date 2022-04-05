@@ -1,0 +1,72 @@
+.container {
+  //background-color: #c5cbea; Might to do this in class above.
+
+  padding: 4px;
+  font-size: 12px;
+
+  .word-box {
+    margin-bottom: 8px;
+
+    .word {
+      display: inline-block;
+      font-size: 18px;
+      vertical-align: top;
+      margin-right: 12px;
+    }
+
+    .text {
+      display: inline-block;
+
+      .furigana {
+        display: inline-block;
+        text-align: center;
+        line-height: 1.5;
+        user-select: none;
+      }
+    }
+  }
+
+  .kanji-list {
+    .kanji-box {
+      display: inline-block;
+      padding: 4px 4px;
+      min-width: 60px;
+      min-height: 60px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      color: white;
+      text-align: center;
+      font-size: 12px;
+
+      a {
+        text-decoration: none;
+      }
+
+      .kanji {
+        text-align: center;
+        font-size: 18px;
+        color: white;
+      }
+    }
+
+    .wk-kanji {
+      background-image: linear-gradient(to bottom, #f0a, #dd0093);
+      border-radius: 4px;
+    }
+
+    .other {
+      background-image: linear-gradient(to bottom, #6476db, #6476db);
+      border-radius: 4px;
+    }
+  }
+
+  .notes {
+    a {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    span {
+      margin-right: 8px;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.container {
+  padding: 80px;
+  @media only screen and (max-width: 600px) {
+    padding: 24px;
+  }
+  text-align: center;
+  background-color: whitesmoke;
+  height: 100%;
+}
+
+.login {
+  border-radius: 24px;
+  padding: 8px 40px;
+  margin: 20px;
+}
+
+.crabby {
+  margin-bottom: 24px;
+}
+
+a {
+  font-weight: bold;
+}
+
+// TODO dedupe with read page.
+.sentence-list {
+  margin: 8px 16px 80px;
+  @media only screen and (max-width: 600px) {
+    margin: 8px;
+  }
+
+  .mat-card {
+    margin-bottom: 12px;
+    padding: 0;
+    border-radius: 5px;
+  }
+
+  .mat-cell {
+    @media only screen and (max-width: 600px) {
+      padding: 0 8px;
+    }
+  }
+}

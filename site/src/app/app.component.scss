@@ -1,0 +1,64 @@
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+  height: 100%;
+  background-color: whitesmoke;
+}
+
+.mat-drawer-container {
+  color: #555555; // Material was overriding styles.css font colors.
+}
+
+.crabby {
+  height: 30px;
+  margin-top: -4px;
+  margin-right: 12px;
+}
+
+mat-toolbar {
+  padding-left: 60px;
+  padding-right: 60px;
+  @media only screen and (max-width: 600px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+
+.navigation-items {
+  list-style: none;
+  padding: 0;
+  margin-right: 20px;
+}
+
+.icon {
+  display: inline-block;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  width: 15%;
+}
+
+.label {
+  display: inline-block;
+  line-height: 30px;
+  margin-left: 4px;
+}
+
+.product-name {
+  font-family: 'Cabin', sans-serif;
+}

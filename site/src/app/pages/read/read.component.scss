@@ -1,0 +1,88 @@
+@use "@angular/material" as mat;
+
+.container {
+  padding: 4px;
+}
+
+.sentence-list {
+  margin: 8px 16px 40px;
+  @media only screen and (max-width: 600px) {
+    margin: 8px;
+  }
+
+  .mat-card {
+    margin-bottom: 12px;
+    padding: 0;
+    border-radius: 8px;
+  }
+
+  .mat-cell {
+    @media only screen and (max-width: 600px) {
+      padding: 0 8px;
+    }
+  }
+}
+
+table {
+  width: 100%;
+}
+
+h1 {
+  margin: 0 40px;
+  font-size: 20px;
+  text-align: center;
+  @media only screen and (max-width: 600px) {
+    margin: 8px;
+  }
+}
+
+.news-heading {
+  margin: 0 40px;
+  @media only screen and (max-width: 600px) {
+    margin: 8px;
+  }
+}
+
+.instructions {
+  margin: 12px 40px;
+
+  span {
+    margin-right: 8px;
+  }
+}
+
+.words-no-content {
+  margin: 0 12px;
+}
+
+.back {
+  font-size: 16px;
+  line-height: 32px;
+  float: left;
+  margin-left: 20px;
+  color: mat.get-color-from-palette(mat.define-palette(mat.$indigo-palette));
+  mat-icon {
+    font-size: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+  }
+}
+
+.filters {
+  float: right;
+  font-size: 16px;
+  margin-right: 20px;
+  color: mat.get-color-from-palette(mat.define-palette(mat.$indigo-palette));
+  vertical-align: middle;
+}
+
+.desktop-hint {
+  color: gray;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 40px;
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+}

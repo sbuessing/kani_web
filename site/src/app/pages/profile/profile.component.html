@@ -1,0 +1,155 @@
+<div class="main">
+  <mat-card>
+    <mat-card-title>Wanikani Settings</mat-card-title>
+    <mat-card-content>
+      <p>Wanikani progress will be used to show furigana and definitions.</p>
+      <a
+        target="_blank"
+        href="https://www.wanikani.com/settings/personal_access_tokens"
+        >Get a read-only Wanikani API token here</a
+      ><br /><br />
+      <div>
+        <label
+          >Token:
+          <input
+            class="apikey"
+            size="36"
+            maxLength="36"
+            type="text"
+            [formControl]="apiKey"
+          /> </label
+        ><br /><br />
+        <button mat-raised-button color="primary" (click)="setApiKey()">
+          Save
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="(userSettings$ | async)?.apiKey && !loading"
+          (click)="refreshWanikani()"
+        >
+          Refresh Wanikani
+        </button>
+        <div class="spinner-wrapper">
+          <mat-spinner diameter="20" *ngIf="loading"></mat-spinner>
+        </div>
+        <div *ngIf="(userSettings$ | async)?.apiKey">
+          <p>Last updated: {{ lastUpdated | date: 'short' }}</p>
+          <div>
+            <div class="word-card">
+              <div>Known</div>
+              <div>{{ knownWK }} words</div>
+            </div>
+            <div class="word-card">
+              <div>Learning</div>
+              <div>{{ learningWK }} words</div>
+            </div>
+          </div>
+        </div>
+        <p></p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>JLPT Settings</mat-card-title>
+    <mat-card-content>
+      <p>JLPT level will be used to highlight new words.</p>
+      <mat-form-field class="filters" appearance="fill">
+        <mat-label>JLPT known</mat-label>
+        <mat-select (selectionChange)="saveJLPTKnown()" [(value)]="jlptKnown">
+          <mat-option value="">None</mat-option>
+          <mat-option value="5">N5</mat-option>
+          <mat-option value="4">N4</mat-option>
+          <mat-option value="3">N3</mat-option>
+          <mat-option value="2">N2</mat-option>
+          <mat-option value="1">N1</mat-option>
+        </mat-select>
+        <mat-hint
+          >This will hide all hints for words up to this level.</mat-hint
+        > </mat-form-field
+      ><br /><br />
+      <mat-form-field class="filters" appearance="fill">
+        <mat-label>JLPT studying</mat-label>
+        <mat-select (selectionChange)="saveJLPTStudy()" [(value)]="jlptStudy">
+          <mat-option value="">None</mat-option>
+          <mat-option value="5">N5</mat-option>
+          <mat-option value="4">N4</mat-option>
+          <mat-option value="3">N3</mat-option>
+          <mat-option value="2">N2</mat-option>
+          <mat-option value="1">N1</mat-option>
+        </mat-select>
+        <mat-hint
+          >This will mark words as learning and show furigana.</mat-hint
+        > </mat-form-field
+      ><br /><br />
+      <div>
+        <br />
+        <div>
+          <div class="word-card">
+            <div>Known</div>
+            <div>{{ knownJLPT }} words</div>
+          </div>
+          <div class="word-card">
+            <div>Learning</div>
+            <div>{{ learningJLPT }} words</div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="isAdmin()">
+    <h2>ADMIN</h2>
+    <div>
+      <span>{{ helloResponse }}</span
+      ><br />
+      <span>{{ newsResponse }}</span
+      ><br />
+      <button (click)="hello()">Hello</button>
+      <button (click)="helloSecure()">Hello Secure</button>
+    </div>
+    <div *ngFor="let source of NewsSource">
+      <button (click)="updateArticles(source)">Update {{ source }}</button>
+    </div>
+    <div>
+      <button (click)="deleteUser()">Delete user</button>
+    </div>
+    <button (click)="staleUser()">Stale user</button>
+    <div>
+      <button (click)="fetchData()">Fetch Assignments</button>
+      <span>Assignments: {{ (assignment$ | async)?.length }}</span>
+    </div>
+
+    <div>
+      <button (click)="fetchWords()">Fetch Words</button>
+      <span>Words: {{ (vocabulary$ | async)?.length }}</span>
+    </div>
+    <div>
+      <button (click)="fetchKanji()">Fetch Kanji</button>
+      <span>Kanji: {{ (kanji$ | async)?.length }}</span>
+    </div>
+
+    <h2>Kanireader data</h2>
+    <div>
+      TODO: This is too expensive. Find a better way. Move all of these checks
+      to an admin page.
+    </div>
+    <h3>Sentences: {{ (sentence$ | async)?.length }}</h3>
+    <div>One word: {{ (sentenceSet$ | async)?.key }}</div>
+    <div>
+      <button (click)="countDocs()">Fetch documents</button>
+      <span>Documents: {{ documentCount }}</span>
+    </div>
+    <h2>Read books <span style="color: red">in progress</span></h2>
+    <div>
+      <a href="/read?book=chokochoko">Choko Choko articles</a>
+    </div>
+    <div>
+      <a href="/read?book=bookworm">Ascendance of a Bookworm</a>
+    </div>
+    <div>
+      <a href="/read?book=slime">That Time I Got Reincarnated as a Slime</a>
+    </div>
+  </mat-card>
+</div>

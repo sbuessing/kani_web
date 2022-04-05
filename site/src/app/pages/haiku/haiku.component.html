@@ -1,0 +1,35 @@
+<div class="container">
+  <div>
+    <mat-form-field class="level" appearance="fill">
+      <mat-label>Starting Level</mat-label>
+      <mat-select (selectionChange)="refresh()" [(value)]="level">
+        <mat-option
+          *ngFor="let item of [].constructor(60); let i = index"
+          [value]="i + 1"
+          >{{ i + 1 }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <p>Words:</p>
+    <div *ngFor="let wordSet of wordsToUse">
+      <span>{{ wordSet[0]?.level }}&nbsp;&nbsp;</span>
+      <span *ngFor="let word of wordSet">{{ word.characters }}&nbsp; </span>
+    </div>
+  </div>
+
+  <div><button (click)="skip()">skip</button></div>
+
+  <textarea [(ngModel)]="text" rows="3" cols="80"> </textarea>
+
+  <div>
+    <button (click)="save()">save</button>
+  </div>
+
+  <h2>Haikus</h2>
+  <div *ngFor="let haiku of haikus | async">
+    <div>Haiku - {{ haiku.text }}</div>
+  </div>
+</div>

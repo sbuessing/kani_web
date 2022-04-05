@@ -1,0 +1,30 @@
+<div class="container">
+  <a mat-button class="back" href="javascript:history.back()">
+    <mat-icon class="icon" [inline]="true">keyboard_arrow_left</mat-icon>
+    <div style="display: inline-block">Back</div>
+  </a>
+  <h2>Wanikani Words</h2>
+  <mat-button-toggle-group name="srs_stages" multiple="true" (change)="updateWords($event)" [(ngModel)]="toggles">
+    <mat-button-toggle class="toggle" *ngFor="let stage of srsStages" value="{{ stage.srsStage }}"
+      style="border-bottom: 6px solid {{ getStageColor(stage.srsStage) }};">
+      <span><b>{{ stage.count }}</b> {{ stage.srsStageName }}</span>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+  <button mat-raised-button (click)="studySRSStages()">
+    Read all {{ filteredWords.length }}
+  </button>
+
+  <div class="sections">
+    <span *ngFor="let word of filteredWords; let i = index">
+      <mat-card *ngIf="word.l !== filteredWords[i - 1]?.l">
+        <a mat-raised-button routerLink="/read" [queryParams]="{level: word.l}">Read level {{ word.l }}</a>
+        <hr class="solid" />
+        <span *ngFor="let levelword of filteredWords; let i = index">
+          <a mat-raised-button class="word" *ngIf="levelword.l === word.l" routerLink="/read"
+            [queryParams]="{word: levelword.c}">{{
+            levelword.c }}</a>
+        </span>
+      </mat-card>
+    </span>
+  </div>
+</div>

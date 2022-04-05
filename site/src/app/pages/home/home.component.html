@@ -1,0 +1,71 @@
+<div class="container">
+  <div *ngIf="maxWKLevel === 0">
+    <h3 class="no-wanikani">
+      Add your <a routerLink="/profile">Wanikani key</a> for more content.
+    </h3>
+  </div>
+  <div *ngFor="let source of NewsSource" class="news-list">
+    <ng-container *ngIf="articles.get(source) as articles">
+      <h3>
+        {{ getSourceName(source) }}
+        <a style="float: right" routerLink="/news" [queryParams]="{source}">See all</a>
+      </h3>
+      <div class="news-cards">
+        <a *ngFor="let article of articles.articles | slice: 0:4" class="news-card" routerLink="/read"
+          [queryParams]="{source, article: article.article_id}">
+          <img *ngIf="article.image" width="200px" src="{{ article.image }}" />
+          <div *ngIf="!article.image" class="div-no-image">{{getSourceName(source)}}</div>
+          <div>{{ article.title }}</div>
+          <div class="story-date">
+            <span *ngIf="article.date">{{
+              article.date | date: ' MM月d日' }}</span>
+            <app-word-chart [stats]="article?.stats"></app-word-chart>
+            <span class="word-count">
+              {{ article.stats?.wordCount }} words
+            </span>
+          </div>
+        </a>
+      </div>
+    </ng-container>
+  </div>
+
+  <div *ngIf="maxWKLevel > 0">
+    <h3>Sentences by Wanikani level</h3>
+    <div>
+      <ng-container *ngFor="let item of [].constructor(60); let i = index">
+        <div class="level">
+          <a *ngIf="maxWKLevel > i" routerLink="/read" [queryParams]="{level: i+1}">{{
+            i + 1
+            }}</a>
+        </div>
+        <div *ngIf="(i + 1) % 30 === 0"></div>
+      </ng-container>
+    </div>
+    <br />
+    <h3>Sentences by Wanikani progress</h3>
+    <div class="word-progress-bubbles">
+      <a routerLink="/read" [queryParams]="{srs_stages:'[0]'}">
+        <div class="lesson">
+          <h2>Lesson</h2>
+          New words
+        </div>
+      </a>
+      <a routerLink="/read" [queryParams]="{srs_stages:'[1,2,3,4]'}">
+        <div class="apprentice">
+          <h2>Apprentice</h2>
+          Recent words
+        </div>
+      </a>
+      <a routerLink="/words">
+        <div class="custom">
+          <h2>Custom</h2>
+          Choose any level
+        </div>
+      </a>
+    </div>
+  </div>
+  <div>
+    Feedback extremely welcome at
+    <a href="mailto:kanireader@gmail.com">kanireader@gmail.com</a>
+  </div>
+</div>
